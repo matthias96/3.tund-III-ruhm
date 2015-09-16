@@ -6,7 +6,9 @@
 		// errori muutujad peavad igal juhul olemas olema
 		$email_error = "";
 		$password_error= "";	
-		
+		$username_error= "";
+		$email1_error= "";
+		$password1_error="";
 		//kontrollime et keegi vajutas input nuppu
 		if($_SERVER["REQUEST_METHOD"] == "POST")  {
 			//echo "keegi vajutas nuppu";
@@ -26,6 +28,22 @@
 				// kontrollin
 				if(strlen($_POST["password"]) < 8) {
 				$password_error= "Peab olema vähemalt 8 tähemärki pikk"; 
+				}
+				
+			}
+			
+			if (empty($_POST["username"]) ) {
+				$username_error = "Kirjuta oma kasutajanimi";
+			}
+			if (empty($_POST["email1"]) ) {
+				$email1_error = "Kirjuta oma email";
+			}
+			if (empty($_POST["password1"]) ) {
+				$password1_error= "Kirjuta parool";
+			} else {
+			
+			if(strlen($_POST["password1"]) < 8) {
+				$password1_error= "Peab olema vähemalt 8 tähemärki pikk"; 
 				}
 				
 			}
@@ -50,10 +68,11 @@
 			<input type="submit" value="Log in"> 
 		</form>
 		
-	<h2>Create user</h2>
+	<h2>Loo kasutaja</h2>
 		<form action="login.php" method="post">
-			<input name="username" type="text" placeholder="Username"> or <input name="email1" type="email" placeholder="E-post"><br></br>
-			<input name="password1" type="password" placeholder="Password"><?php echo $password_error;?> <br></br>
-			<input type="submit" value="Create user">
+			<input name="username" type="text" placeholder="Kasutaja"><?php echo $username_error; ?><br></br>  
+			<input name="email1" type="email" placeholder="E-post"><?php echo $email1_error;?> <br></br>
+			<input name="password1" type="password" placeholder="Parool"><?php echo $password1_error;?> <br></br>
+			<input type="submit" value="Loo kasutaja">
 		</form>
 <?php require_once("../footer.php"); ?>	

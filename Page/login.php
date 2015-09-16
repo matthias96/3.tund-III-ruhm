@@ -9,6 +9,10 @@
 		$username_error= "";
 		$email1_error= "";
 		$password1_error="";
+		
+		//muutujad andmebaasi väärtuste jaoks
+		$username= "";
+		$email= "";
 		//kontrollime et keegi vajutas input nuppu
 		if($_SERVER["REQUEST_METHOD"] == "POST")  {
 			//echo "keegi vajutas nuppu";
@@ -23,7 +27,8 @@
 				
 				if (empty($_POST["email"]) ) {
 					$email_error = "See väli on kohustuslik";
-					
+				}else{
+					$email = test_input($_POST)
 					
 				}
 				
@@ -39,6 +44,10 @@
 					
 				}
 			
+			if($email_error== "" && $password_error == "") {
+				
+				echo
+			}
 			
 			
 			
@@ -53,6 +62,12 @@
 					$username_error = "Kirjuta oma kasutajanimi";
 				
 				}	
+			}else{
+				$username=test_input($_POST["username"]);
+			}
+				if($username_error == ""){
+					echo "salvestan andmebaasi";.$username.;
+			}
 				if (empty($_POST["email1"]) ) {
 					$email1_error = "Kirjuta oma email";
 				}
@@ -68,7 +83,15 @@
 			}
 		}
 		
-
+	function test_input($data) {
+		// võtab ära tühikud, enterid, tabid
+	$data = trim($data);
+	   // tagurpidi kaldkriipsud
+	$data = stripslashes($data);
+	 // teeb html tekstiks < läheb &lt;
+	$data = htmlspecialchars($data);
+	return $data;
+	}
 ?>
 <?php
 	$page_title = "Sisselogimise leht";
@@ -79,7 +102,7 @@
 
 	<h2>Login</h2>
 		<form action="login.php" method="post" >
-			<input name="email" type="email" placeholder="E-post"><?php echo $email_error; ?><br><br>
+			<input name="email" type="email" placeholder="E-post" value="email"><?php echo $email_error; ?><br><br>
 			<input name="password" type="password" placeholder="Parool"><?php echo $password_error;?> <br><br>
 			<input name="login" type="submit" value="Log in"> 
 		</form>

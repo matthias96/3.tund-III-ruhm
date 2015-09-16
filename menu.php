@@ -18,9 +18,7 @@
 		echo '<li>Login</li>';
 	} else {
 		echo'<li>
-	<a href="login.php">Login</a>
-		
-	</li>';
+	<a href="login.php">Login</a></li>';
 		
 	}
 		

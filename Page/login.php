@@ -28,7 +28,7 @@
 				if (empty($_POST["email"]) ) {
 					$email_error = "See väli on kohustuslik";
 				}else{
-					$email = test_input($_POST)
+					$email = test_input($_POST["email"]);
 					
 				}
 				
@@ -46,7 +46,7 @@
 			
 			if($email_error== "" && $password_error == "") {
 				
-				echo
+				echo "kontrollin sisselogimist".$email." ja parool ";
 			}
 			
 			
@@ -61,12 +61,12 @@
 				if (empty($_POST["username"]) ) {
 					$username_error = "Kirjuta oma kasutajanimi";
 				
-				}	
+					
 			}else{
 				$username=test_input($_POST["username"]);
 			}
 				if($username_error == ""){
-					echo "salvestan andmebaasi";.$username.;
+					echo "salvestan andmebaasi".$username;
 			}
 				if (empty($_POST["email1"]) ) {
 					$email1_error = "Kirjuta oma email";
@@ -102,7 +102,7 @@
 
 	<h2>Login</h2>
 		<form action="login.php" method="post" >
-			<input name="email" type="email" placeholder="E-post" value="email"><?php echo $email_error; ?><br><br>
+			<input name="email" type="email" placeholder="E-post" value="<?php echo $email;?>"><?php echo $email_error; ?><br><br>
 			<input name="password" type="password" placeholder="Parool"><?php echo $password_error;?> <br><br>
 			<input name="login" type="submit" value="Log in"> 
 		</form>
